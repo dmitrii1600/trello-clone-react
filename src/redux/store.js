@@ -125,9 +125,9 @@ const cardByIdReducer = (state = {}, action) => {
 
         // Find every card from the deleted list and remove it
         case actionTypes.DELETE_LIST: {
-            const {cardIds} = action.payload;
+            const {cards: cardIds} = action.payload;
             return Object.keys(state)
-               // .filter(id => !cardIds.includes(id))
+                .filter(id => !cardIds.includes(id))
                 .reduce(
                     (newState, cardId) => ({...newState, [cardId]: state[cardId]}),
                     {}
