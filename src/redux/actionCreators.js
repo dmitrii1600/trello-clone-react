@@ -24,7 +24,7 @@ export const addCardAC = (listId, cardId, cardText) => ({
     payload: {listId, cardId, cardText}
 });
 
-export const moveCardAC = (oldCardIndex, newCardIndex, sourceListId, destListId) => ({
+export const moveCardAC = ({oldCardIndex, newCardIndex, sourceListId, destListId}) => ({
     type: actionTypes.MOVE_CARD,
     payload: {oldCardIndex, newCardIndex, sourceListId, destListId}
 });

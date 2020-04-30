@@ -3,6 +3,7 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from 'redux-thunk'
 import throttle from "lodash.throttle";
 import initStore from "./initStore";
+import logger from 'redux-logger';
 
 const boardReducer = (state = {lists: []}, action) => {
     switch (action.type) {
@@ -168,8 +169,8 @@ const loadState = () => {
     }
 };
 
-const persistedState = loadState();
-const store = createStore(reducers, persistedState, applyMiddleware(thunk));
+const loadedState = loadState();
+const store = createStore(reducers, loadedState, applyMiddleware(thunk, logger));
 
 store.subscribe(
     throttle(() => {

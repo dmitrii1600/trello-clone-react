@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import CardEditor from "./CardEditor";
 import {changeCardTextAC, deleteCardAC} from "../redux/actionCreators";
+import {Draggable} from "react-beautiful-dnd";
 
 class Card extends Component {
     constructor(props) {
@@ -41,12 +42,17 @@ class Card extends Component {
     };
 
     render() {
-        const {card} = this.props;
+        const {card, index} = this.props;
         const {hover, editing} = this.state;
 
         if (!editing) {
             return (
-                <div
+                <Draggable draggableId={card._id} index={index}>
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
                     className="Card"
                     onMouseEnter={this.startHover}
                     onMouseLeave={this.endHover}
@@ -60,6 +66,8 @@ class Card extends Component {
                     )}
                     {card.text}
                 </div>
+                    )}
+                </Draggable>
             );
         } else {
             return (

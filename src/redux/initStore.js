@@ -18,5 +18,4 @@ export default store => {
     cardText = "Card 1";
     store.dispatch(addCardAC(firstListId, cardId, cardText));
 
-
 };
