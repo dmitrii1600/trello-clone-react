@@ -1,10 +1,10 @@
-
 import "../styles/AddList.css";
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import ListEditor from "./ListEditor";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import shortid from "shortid";
+
+import ListEditor from "./ListEditor";
 import EditButtons from "./EditButtons";
 import {addListAC} from "../redux/actionCreators";
 
@@ -12,6 +12,7 @@ class AddList extends Component {
     state = {
         title: ""
     };
+
 
     handleChangeTitle = e => this.setState({ title: e.target.value });
 
@@ -45,4 +46,5 @@ class AddList extends Component {
     }
 }
 
-export default connect(null, {addListAC} )(AddList);
+
+export default connect(null, {addListAC})(AddList);
