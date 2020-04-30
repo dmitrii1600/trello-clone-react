@@ -1,7 +1,8 @@
 import * as actionTypes from "./actionTypes";
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from 'redux-thunk'
 import throttle from "lodash.throttle";
-import seed from "../seed";
+import initStore from "./initStore";
 
 const boardReducer = (state = {lists: []}, action) => {
     switch (action.type) {
@@ -151,7 +152,7 @@ const saveState = state => {
         const serializedState = JSON.stringify(state);
         localStorage.setItem("state", serializedState);
     } catch {
-        // ignore write errors
+
     }
 };
 
@@ -168,7 +169,7 @@ const loadState = () => {
 };
 
 const persistedState = loadState();
-const store = createStore(reducers, persistedState);
+const store = createStore(reducers, persistedState, applyMiddleware(thunk));
 
 store.subscribe(
     throttle(() => {
@@ -177,9 +178,10 @@ store.subscribe(
 );
 
 console.log(store.getState());
+
 if (!store.getState().board.lists.length) {
-    console.log("SEED");
-    seed(store);
+    console.log("initStore");
+    initStore(store);
 }
 
 export default store;

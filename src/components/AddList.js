@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import ListEditor from "./ListEditor";
 import shortid from "shortid";
 import EditButtons from "./EditButtons";
+import {addListAC} from "../redux/actionCreators";
 
 class AddList extends Component {
     state = {
@@ -14,16 +15,11 @@ class AddList extends Component {
 
     handleChangeTitle = e => this.setState({ title: e.target.value });
 
-    createList = async () => {
+    createList = () => {
         const { title } = this.state;
-        const { dispatch } = this.props;
 
         this.props.toggleAddingList();
-
-        dispatch({
-            type: "ADD_LIST",
-            payload: { listId: shortid.generate(), listTitle: title }
-        });
+        this.props.addListAC(shortid.generate(), title);
     };
 
     render() {
@@ -49,4 +45,4 @@ class AddList extends Component {
     }
 }
 
-export default connect()(AddList);
+export default connect(null, {addListAC} )(AddList);

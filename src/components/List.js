@@ -8,6 +8,7 @@ import Card from "./Card";
 import shortid from "shortid";
 import CardEditor from "./CardEditor";
 import ListEditor from "./ListEditor";
+import {addCardAC, changeListTitleAC, deleteListAC} from "../redux/actionCreators";
 
 class List extends Component {
 
@@ -21,46 +22,45 @@ class List extends Component {
 
     handleChangeTitle = e => this.setState({title: e.target.value});
 
-    editListTitle = async () => {
-        const {listId, dispatch} = this.props;
+    editListTitle = () => {
+        const {listId} = this.props;
         const {title} = this.state;
 
         this.toggleEditingTitle();
 
-        dispatch({
-            type: "CHANGE_LIST_TITLE",
-            payload: {listId, listTitle: title}
-        });
+        /* dispatch({
+             type: "CHANGE_LIST_TITLE",
+             payload: {listId, listTitle: title}
+         });*/
+        this.props.changeListTitleAC(listId, title);
     };
 
-    deleteList = async () => {
-        const {listId, list, dispatch} = this.props;
+    deleteList = () => {
+        const {listId, list} = this.props;
 
-        dispatch({
+        /*dispatch({
             type: "DELETE_LIST",
             payload: {listId, cards: list.cards}
-        });
+        });*/
+        this.props.deleteListAC(listId, list.cards);
     };
+
     toggleAddingCard = () =>
         this.setState({addingCard: !this.state.addingCard});
 
-    //thunk
-    addCard = async cardText => {
-        const {listId, dispatch} = this.props;
+    addCard = cardText => {
+        const {listId} = this.props;
 
         this.toggleAddingCard();
 
         const cardId = shortid.generate();
 
-        dispatch({
-            type: "ADD_CARD",
-            payload: {cardText, cardId, listId}
-        });
+        this.props.addCardAC(listId, cardId, cardText);
     };
 
     render() {
         const {list} = this.props;
-        const { editingTitle, addingCard, title } = this.state;
+        const {editingTitle, addingCard, title} = this.state;
 
         return (
             <div className="List">
@@ -97,7 +97,8 @@ class List extends Component {
                     />
                 ) : (
                     <div className="Toggle-Add-Card" onClick={this.toggleAddingCard}>
-                        <ion-icon name="add" /> Add a card
+                        <ion-icon name="add"/>
+                        Add a card
                     </div>
                 )}
             </div>
@@ -109,4 +110,4 @@ const mapStateToProps = (state, ownProps) => ({
     list: state.listsById[ownProps.listId]
 });
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps, {changeListTitleAC, addCardAC, deleteListAC})(List);

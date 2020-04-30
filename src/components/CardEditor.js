@@ -5,17 +5,17 @@ import TextareaAutosize from "react-textarea-autosize";
 import EditButtons from "./EditButtons";
 
 class CardEditor extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             text: this.props.text || "",
         };
     }
 
-    handleChangeText = event => this.setState({ text: event.target.value });
+    handleChangeText = event => this.setState({text: event.target.value});
 
     onEnter = e => {
-        const { text } = this.state;
+        const {text} = this.state;
 
         if (e.keyCode === 13) {
             e.preventDefault();
@@ -25,8 +25,8 @@ class CardEditor extends Component {
     };
 
     render() {
-        const { text } = this.state;
-        const { onSave, onCancel, onDelete, adding } = this.props;
+        const {text} = this.state;
+        const {onSave, onCancel, onDelete, adding} = this.props;
 
         return (
             <div className="Edit-Card">

@@ -1,19 +1,21 @@
 import "../styles/Card.css";
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import CardEditor from "./CardEditor";
+import {changeCardTextAC, deleteCardAC} from "../redux/actionCreators";
 
 class Card extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             hover: false,
             editing: false,
         };
     }
-    startHover = () => this.setState({ hover: true });
-    endHover = () => this.setState({ hover: false });
+
+    startHover = () => this.setState({hover: true});
+    endHover = () => this.setState({hover: false});
 
     startEditing = () =>
         this.setState({
@@ -22,31 +24,25 @@ class Card extends Component {
             text: this.props.card.text
         });
 
-    endEditing = () => this.setState({ hover: false, editing: false });
+    endEditing = () => this.setState({hover: false, editing: false});
 
-    editCard = async text => {
-        const { card, dispatch } = this.props;
+    editCard = text => {
+        const {card} = this.props;
 
         this.endEditing();
 
-        dispatch({
-            type: "CHANGE_CARD_TEXT",
-            payload: { cardId: card._id, cardText: text }
-        });
+        this.props.changeCardTextAC(card._id, text);
     };
 
-    deleteCard = async () => {
-        const { listId, card, dispatch } = this.props;
+    deleteCard = () => {
+        const {listId, card} = this.props;
 
-        dispatch({
-            type: "DELETE_CARD",
-            payload: { cardId: card._id, listId }
-        });
+        this.props.deleteCardAC(listId, card._id);
     };
 
     render() {
-        const { card } = this.props;
-        const { hover, editing } = this.state;
+        const {card} = this.props;
+        const {hover, editing} = this.state;
 
         if (!editing) {
             return (
@@ -58,7 +54,7 @@ class Card extends Component {
                     {hover && (
                         <div className="Card-Icons">
                             <div className="Card-Icon" onClick={this.startEditing}>
-                                <ion-icon name="create" />
+                                <ion-icon name="create"/>
                             </div>
                         </div>
                     )}
@@ -82,4 +78,4 @@ const mapStateToProps = (state, ownProps) => ({
     card: state.cardsById[ownProps.cardId]
 });
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps, {changeCardTextAC, deleteCardAC})(Card);

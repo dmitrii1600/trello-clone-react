@@ -27,6 +27,7 @@
 .Toggle-Add-Card:hover {
     background-color: rgba(9, 45, 66, 0.13);
     color: #17394d;
+    border-radius: 10px;
     text-decoration: underline;
 }
 
