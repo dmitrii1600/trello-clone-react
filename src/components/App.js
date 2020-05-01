@@ -3,12 +3,12 @@ import React from 'react';
 import Board from "./Board";
 
 const App = () => {
-  return (
-    <div className="App">
-      <header className="Header">React Trello Clone By DS</header>
-      <Board/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header className="Header">Trello Clone <div className="Header_Signature">by Shevchenko D.</div></header>
+            <Board/>
+        </div>
+    );
 }
 
 export default App;

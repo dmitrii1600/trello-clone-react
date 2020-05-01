@@ -1,7 +1,7 @@
 .List {
     background: #dfe3e6;
     flex-shrink: 0;
-    width: 272px;
+    width: 300px;
     height: fit-content;
     margin: 10px;
     margin-right: 0;
@@ -9,13 +9,15 @@
     border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.List-Title {
+.List_Title {
+    font-family: 'Microsoft JhengHei UI';
+    font-weight: bold;
     cursor: pointer;
     padding: 10px;
     overflow-wrap: break-word;
 }
 
-.Toggle-Add-Card {
+.Toggle_Add_Card {
     cursor: pointer;
     padding: 10px;
     color: #6b808c;
@@ -24,13 +26,22 @@
     align-items: center;
 }
 
-.Toggle-Add-Card:hover {
+.Toggle_Add_Card:hover {
     background-color: rgba(9, 45, 66, 0.13);
     color: #17394d;
     border-radius: 10px;
     text-decoration: underline;
 }
 
-.Toggle-Add-Card ion-icon {
+.Toggle_Add_Card ion-icon {
     margin-right: 2px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid;
+    margin: 2px;
+    opacity: 0.2;
 }

@@ -1,9 +1,9 @@
-.List-Title-Edit {
+.List_Title_Edit {
     display: flex;
     align-items: center;
 }
 
-.List-Title-Edit ion-icon {
+.List_Title_Edit ion-icon {
     cursor: pointer;
     padding: 2px;
     margin: 1px 3px;
@@ -12,11 +12,11 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
-.List-Title-Edit ion-icon:hover {
-    background: rgba(211, 211, 211, 1);
+.List_Title_Edit ion-icon:hover {
+    background: gray;
 }
 
-.List-Title-Textarea {
+.List_Title_Textarea {
     margin: 6px 0 5px 6px;
     border-radius: 10px;
     border: none;
@@ -26,6 +26,6 @@
     padding: 5px;
 }
 
-.List-Title-Textarea:focus {
-    box-shadow: inset 0 0 0 2px #0079bf;
+.List_Title_Textarea:focus {
+    box-shadow: inset 0 0 0 2px green;
 }

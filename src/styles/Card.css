@@ -13,11 +13,11 @@
 }
 
 .Card:hover {
-    background: #f5f6f7;
-    background: lawngreen;
+    background: green;
+    color: white;
 }
 
-.Card-Icons {
+.Card_Icons {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -26,7 +26,7 @@
     justify-content: flex-end;
 }
 
-.Card-Icon {
+.Card_Icon {
     cursor: pointer;
     width: 24px;
     height: 24px;
@@ -40,7 +40,7 @@
     opacity: 0.9;
 }
 
-.Card-Icon:hover {
+.Card_Icon:hover {
     opacity: 1;
     background: rgba(220, 220, 220, 1);
 }

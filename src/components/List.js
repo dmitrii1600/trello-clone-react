@@ -1,6 +1,6 @@
 import "../styles/List.css";
 
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 
 import Card from "./Card";
@@ -10,112 +10,6 @@ import CardEditor from "./CardEditor";
 import ListEditor from "./ListEditor";
 import {addCardAC, changeListTitleAC, deleteListAC} from "../redux/actionCreators";
 import {Draggable, Droppable} from "react-beautiful-dnd";
-/*
-class List extends Component {
-
-    state = {
-        editingTitle: false,
-        title: this.props.list.title,
-        addingCard: false
-    };
-    toggleEditingTitle = () =>
-        this.setState({editingTitle: !this.state.editingTitle});
-
-    handleChangeTitle = e => this.setState({title: e.target.value});
-
-    editListTitle = () => {
-        const {listId} = this.props;
-        const {title} = this.state;
-
-        this.toggleEditingTitle();
-
-        this.props.changeListTitleAC(listId, title);
-    };
-
-    deleteList = () => {
-        const {listId, list} = this.props;
-
-        this.props.deleteListAC(listId, list.cards);
-    };
-
-    toggleAddingCard = () =>
-        this.setState({addingCard: !this.state.addingCard});
-
-    addCard = cardText => {
-        const {listId} = this.props;
-
-        this.toggleAddingCard();
-
-        const cardId = shortid.generate();
-
-        this.props.addCardAC(listId, cardId, cardText);
-    };
-
-    render() {
-        const {list, index} = this.props;
-        const {editingTitle, addingCard, title} = this.state;
-
-        return (
-            <Draggable draggableId={list._id} index={index}>
-                {(provided, snapshot) => (
-                    <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className="List"
-                    >
-                        {editingTitle ? (
-                            <ListEditor
-                                list={list}
-                                title={title}
-                                handleChangeTitle={this.handleChangeTitle}
-                                saveList={this.editListTitle}
-                                onClickOutside={this.editListTitle}
-                                deleteList={this.deleteList}
-                            />
-                        ) : (
-                            <div className="List-Title" onClick={this.toggleEditingTitle}>
-                                {list.title}
-                            </div>
-                        )}
-
-                        <Droppable droppableId={list._id}>
-                            {(provided, _snapshot) => (
-                                <div ref={provided.innerRef}>
-                                    {list.cards &&
-                                    list.cards.map((cardId, index) => (
-                                        <Card
-                                            key={cardId}
-                                            cardId={cardId}
-                                            index={index}
-                                            listId={list._id}
-                                        />
-                                    ))}
-
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-
-                        {addingCard ? (
-                            <CardEditor
-                                onSave={this.addCard}
-                                onCancel={this.toggleAddingCard}
-                                adding
-                            />
-                        ) : (
-                            <div className="Toggle-Add-Card" onClick={this.toggleAddingCard}>
-                                <ion-icon name="add"/>
-                                Add a card
-                            </div>
-                        )}
-                    </div>
-                )}
-            </Draggable>
-        );
-    }
-}*/
-
 
 const List = (props) => {
 
@@ -176,14 +70,15 @@ const List = (props) => {
                             deleteList={deleteList}
                         />
                     ) : (
-                        <div className="List-Title" onClick={toggleEditingTitle}>
+                        <div className="List_Title" onClick={toggleEditingTitle}>
                             {list.title}
                         </div>
                     )}
-
+                    <hr/>
                     <Droppable droppableId={list._id}>
                         {(provided, _snapshot) => (
                             <div ref={provided.innerRef}>
+                                <br/>
                                 {list.cards &&
                                 list.cards.map((cardId, index) => (
                                     <Card
@@ -206,7 +101,7 @@ const List = (props) => {
                             adding
                         />
                     ) : (
-                        <div className="Toggle-Add-Card" onClick={toggleAddingCard}>
+                        <div className="Toggle_Add_Card" onClick={toggleAddingCard}>
                             <ion-icon name="add"/>
                             Add a card
                         </div>
